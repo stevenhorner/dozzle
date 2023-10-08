@@ -17,6 +17,17 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
 
+  locales: {
+    root: {
+      label: "English",
+      lang: "en",
+    },
+    de: {
+      label: "German",
+      lang: "de",
+    },
+  },
+
   head: [
     [
       "script",
