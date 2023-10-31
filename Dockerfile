@@ -28,6 +28,9 @@ RUN apk add --no-cache ca-certificates && mkdir /dozzle
 
 WORKDIR /dozzle
 
+# Create users
+RUN addgroup -S dozzlegroup && adduser -S dozzleuser -G dozzlegroup
+
 # Copy go mod files
 COPY go.* ./
 RUN go mod download
@@ -52,8 +55,12 @@ FROM scratch
 
 ENV PATH /bin
 COPY --from=builder /data /data
+
+COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /dozzle/dozzle /dozzle
+
+USER dozzleuser
 
 EXPOSE 8080
 
