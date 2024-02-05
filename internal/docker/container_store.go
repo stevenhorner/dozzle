@@ -51,9 +51,6 @@ func (s *ContainerStore) SubscribeStats(ctx context.Context, stats chan Containe
 }
 
 func (s *ContainerStore) init(ctx context.Context) {
-	events := make(chan ContainerEvent)
-	s.client.Events(ctx, events)
-
 	containers, err := s.client.ListContainers()
 	if err != nil {
 		log.Fatalf("error while listing containers: %v", err)
@@ -68,6 +65,8 @@ func (s *ContainerStore) init(ctx context.Context) {
 	s.statsCollector.Subscribe(ctx, stats)
 
 	go func() {
+		events := make(chan ContainerEvent)
+		s.client.Events(ctx, events)
 		for {
 			select {
 			case event := <-events:
