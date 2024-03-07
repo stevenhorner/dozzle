@@ -146,7 +146,7 @@ function matchedName({ item, matches = [] }: { item: { name: string }; matches?:
 
 <style scoped lang="postcss">
 :deep(mark) {
-  @apply bg-transparent text-inherit underline underline-offset-2;
+  @apply bg-transparent underline underline-offset-2;
 }
 
 .menu a {

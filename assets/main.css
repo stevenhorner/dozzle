@@ -1,11 +1,33 @@
+@import "tailwindcss";
+
 @import "splitpanes/dist/splitpanes.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+  --color-green: oklch(69% 0.119722 188.479048);
+  --color-red: oklch(64% 0.218 28.85);
+  --color-purple: oklch(51.49% 0.215 321.03);
+  --color-blue: oklch(65% 0.171 249.5);
+  --color-orange: oklch(70% 0.186 48.13);
+  --color-base: oklch(var(--base-color) );
+  --color-base-darker: oklch(var(--base-darker-color)  );
+  --color-base-lighter: oklch(var(--base-lighter-color) );
+  --color-base-content: oklch(var(--base-content-color));
+  --color-primary: oklch(var(--primary-color));
+  --color-secondary: oklch(var(--secondary-color) / <alpha-value>);
+}
+
 @layer base {
   :root {
+    --base-lighter-color: 25% 0 0;
+    --base-color: 18% 0 0;
+    --base-darker-color: 11% 0 0;
+    --base-content-color: 89.23% 0 0;
+    --primary-color: 70.96% 0.143 176.65;
+    --secondary-color: 91.36% 0.11098 90.1243;
     --p: var(--primary-color);
     --pc: 89.23% 0;
     --s: var(--secondary-color);
@@ -100,7 +122,7 @@
   .active-primary {
     --n: var(--p);
     --nc: var(--pc);
-    @apply active;
+    /* @apply active; */
   }
 
   .link-primary {

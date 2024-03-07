@@ -23,7 +23,7 @@ export default {
         "base-darker": "oklch(var(--base-darker-color) / <alpha-value>)",
         "base-lighter": "oklch(var(--base-lighter-color) / <alpha-value>)",
         "base-content": "oklch(var(--base-content-color) / <alpha-value>)",
-        primary: "oklch(var(--primary-color) / <alpha-value>)",
+: "oklch(var(--primary-color) / <alpha-value>)",
         secondary: "oklch(var(--secondary-color) / <alpha-value>)",
       },
     },
