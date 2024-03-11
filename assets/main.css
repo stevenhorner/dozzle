@@ -12,9 +12,9 @@
   --color-purple: oklch(51.49% 0.215 321.03);
   --color-blue: oklch(65% 0.171 249.5);
   --color-orange: oklch(70% 0.186 48.13);
-  --color-base: oklch(var(--base-color) );
-  --color-base-darker: oklch(var(--base-darker-color)  );
-  --color-base-lighter: oklch(var(--base-lighter-color) );
+  --color-base: oklch(var(--base-color));
+  --color-base-darker: oklch(var(--base-darker-color));
+  --color-base-lighter: oklch(var(--base-lighter-color));
   --color-base-content: oklch(var(--base-content-color));
   --color-primary: oklch(var(--primary-color));
   --color-secondary: oklch(var(--secondary-color) / <alpha-value>);
