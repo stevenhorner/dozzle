@@ -1,5 +1,5 @@
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import VueMacros from "unplugin-vue-macros/vite";
 import Icons from "unplugin-icons/vite";
@@ -27,6 +27,7 @@ export default defineConfig(() => ({
     },
   },
   plugins: [
+    splitVendorChunkPlugin(),
     VueMacros({
       plugins: {
         vue: Vue(),
