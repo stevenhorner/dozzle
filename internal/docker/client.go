@@ -2,6 +2,8 @@ package docker
 
 import (
 	"context"
+	"crypto/rand"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"path/filepath"
@@ -102,6 +104,16 @@ func NewClient(cli DockerCLI, filters filters.Args, host Host) Client {
 	return client
 }
 
+var RandomId string
+
+func init() {
+	b := make([]byte, 25)
+	if _, err := rand.Read(b); err != nil {
+		log.Fatalf("unable to generate random id: %v", err)
+	}
+	RandomId = hex.EncodeToString(b)
+}
+
 // NewClientWithFilters creates a new instance of Client with docker filters
 func NewLocalClient(f map[string][]string, hostname string) (Client, error) {
 	filterArgs := filters.NewArgs()
@@ -125,7 +137,7 @@ func NewLocalClient(f map[string][]string, hostname string) (Client, error) {
 	}
 
 	host := Host{
-		ID:       info.ID,
+		ID:       RandomId,
 		Name:     info.Name,
 		MemTotal: info.MemTotal,
 		NCPU:     info.NCPU,

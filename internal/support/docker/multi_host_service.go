@@ -63,6 +63,7 @@ func NewSwarmService(client docker.Client, certificates tls.Certificate) *MultiH
 		found := 0
 		replaced := 0
 		for _, ip := range ips {
+			log.Debugf("found swarm service at %s", ip)
 			client, err := agent.NewClient(ip.String()+":7007", certificates)
 			if err != nil {
 				log.Warnf("error creating client for %s: %v", ip, err)
