@@ -40,7 +40,6 @@ RUN go mod download
 COPY internal ./internal
 COPY main.go ./
 COPY protos ./protos
-COPY shared_key.pem shared_cert.pem ./
 
 # Copy assets built with node
 COPY --from=node /build/dist ./dist
@@ -51,6 +50,9 @@ ARG TARGETOS TARGETARCH
 
 # Generate protos
 RUN go generate
+
+RUN --mount=type=secret,id=shared_cert.pem cp /run/secrets/shared_cert.pem shared_cert.pem
+RUN --mount=type=secret,id=shared_key.pem cp /run/secrets/shared_key.pem shared_key.pem
 
 # Build binary
 RUN GOOS=$TARGETOS GOARCH=$TARGETARCH CGO_ENABLED=0 go build -ldflags "-s -w -X github.com/amir20/dozzle/internal/support/cli.Version=$TAG" -o dozzle

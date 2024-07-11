@@ -30,7 +30,7 @@ build: dist generate
 
 .PHONY: docker
 docker: shared_key.pem shared_cert.pem
-	@docker build  --build-arg TAG=local -t amir20/dozzle .
+	@docker build --secret id=shared_cert.pem,src=shared_cert.pem --secret id=shared_key.pem,src=shared_key.pem --build-arg TAG=local -t amir20/dozzle .
 
 generate: shared_key.pem shared_cert.pem $(GEN_FILES)
 
@@ -55,5 +55,5 @@ $(GEN_DIR)/%.pb.go: $(PROTO_DIR)/%.proto
 
 .PHONY: push
 push: docker
-	@docker tag amir20/dozzle:latest amir20/dozzle:agent
-	@docker push amir20/dozzle:agent
+	@docker tag amir20/dozzle:latest amir20/dozzle:local
+	@docker push amir20/dozzle:local
